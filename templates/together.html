@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zaheen - Your Personal Therapist</title>
+  <link rel="stylesheet" href = "{{url_for('static',filename='css/style.css')}}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#chatForm').on('submit', function(event) {
+        event.preventDefault();
+        var userMessage = $('#userMessage').val();
+        $('#userMessage').val('');
+        $.ajax({
+          url: "{{ url_for('chat') }}",
+          method: 'POST',
+          data: JSON.stringify({message: userMessage}),
+          contentType: 'application/json',
+          success: function(response) {
+            $('#chatBox').append('<p class="user-message"><strong>You: </strong> ' + userMessage + '</p>');
+            $('#chatBox').append('<p class="bot-message"><strong>Zaheen🧠: </strong> ' + response.bot_message + '</p>');
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body background="{{ url_for('static', filename='back.jpg') }}">
+  <div class="header">
+    <div class="logos-container">
+      <img src="{{url_for('static',filename='css/truLog.jpg')}}" alt="Logo" class="logo">
+      <h1>Zaheen - Your Personal Therapist</h1>
+    </div>
+    <div class="user-container">
+      <h3>Welcome, User</h3>
+      <img src="{{url_for('static',filename='css/userLog.jpg')}}" alt="Logo" class="logo">
+    </div>
+  </div>
+  <div class="content">
+    <div class="left-section">
+      <div id="chatBox"></div>
+      <form id="chatForm">
+        <input type="text" id="userMessage" placeholder="Type your message here" required>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <div class="right-section">
+      <div class="video-container">
+        <img src="{{ url_for('video') }}" alt="Video" />
+      </div>
+      <div class="info-box">
+        <h2>RealTime Face and Emotion Detection</h2>
+        <h3>Zaheen offers you: 🙌</h3>
+        <h4> 📌 Realtime emotion classification live from your camera</h4>
+        <h4> 📌 Your own personal buddy available 24/7</h4>
+        <h4> 📌 Zaheen has the capability to change its tone according to your facial expressions.</h4>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
