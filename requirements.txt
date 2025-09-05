@@ -9,3 +9,5 @@ google
 openai
 langchain-openai
 tensorflow==2.20.0
+gunicorn
+
