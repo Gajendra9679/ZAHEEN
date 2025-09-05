@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__, static_url_path='/static')
 
 # Configure the API key
-API_KEY = "AIzaSyAWtrpcV7y0AwFN9cCJFzBcqRUViitB1jY"
+API_KEY = "AIzaSyAQ6BNU3nrFTVmU7Dva4tKKrNLNq8ny3cw"
 genai.configure(api_key=API_KEY)
 
 # Open webcam
@@ -157,7 +157,7 @@ def bot_answer(question, current_mood):
         }
         
         # Initialize the model with the correct model name
-        model = genai.GenerativeModel(model_name="models/gemini-1.5-pro", 
+        model = genai.GenerativeModel(model_name="models/gemini-2.0-flash", 
                                      generation_config=generation_config)
         
         # Generate content using the prompt
