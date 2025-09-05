@@ -20,7 +20,6 @@ API_KEY = "AIzaSyAQ6BNU3nrFTVmU7Dva4tKKrNLNq8ny3cw"
 genai.configure(api_key=API_KEY)
 
 # Open webcam
-cam = cv2.VideoCapture(0)
 max_emotion = "Neutral"
 max_count = 0
 emotion_history = []
@@ -70,6 +69,8 @@ def detection():
     global max_emotion
     last_analysis_time = time.time()
     analysis_interval = 0.5  # Analyze every 0.5 seconds
+    cam = cv2.VideoCapture(0)
+
     
     while True:
         ret, frame = cam.read()
